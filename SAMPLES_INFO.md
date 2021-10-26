@@ -84,18 +84,25 @@ WORK FOLDER HYDRA: /scratch/genomics/piranir/poolparty
 
 -> 1 JOB: pp_align.job
 
+
   		+ **module**: ```module load bioinformatics/bcftools/1.9```  
 		
+
   		+ **module**: ```module load bioinformatics/fastqc/0.11.8``` 
 		
+
   		+ **module**: ```module load bioinformatics/bwa/0.7.17``` 
 		
+
   		+ **module**: ```module load bioinformatics/samtools``` 
 		
+
   		+ **module**: ```module load ~/modulefiles/miniconda``` 
 		
+
   		+ **module**: ```source activate tidyverse``` 
                                                                                                                                       
+
   		+ **module**: ```./PPalign pp_align.config```  
 
 --------------
