@@ -167,13 +167,14 @@ After finishing running.
 #### Calculate Fst for every SNP
 
 * Folder: /scratch/genomics/piranir/BAM_files_Anolis/BAM
+	
 	*Job file: fst.job
 
-                                                                                       
-  		+ **module**: ```source /home/ariasc/.bashrc``` 
-  		+ **module**: ```conda activate poolp2``` 
-                                                         
-                                                                                                                                      
+                      
+		      
+  		+ **module**: ```source /home/ariasc/.bashrc```
+  		+  **module**: ```conda activate poolp2```
+                                                                                                      
   		+ **command**: ```perl /home/piranir/popoolation2_1201/fst-sliding.pl --input p1_p2_java.sync --output p1_p2.fst --suppress-noninformative --min-count 6 --min-coverage 10 --max-coverage 200 --min-covered-fraction 1 --window-size 1 --step-size 1 --pool-size 500```  
 
 
