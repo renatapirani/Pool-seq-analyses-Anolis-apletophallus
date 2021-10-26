@@ -1,2 +1,2 @@
 # Poolseq-Anolis
-Poolseq data from Anolis apletophallus
+Poolseq data from _Anolis apletophallus_
