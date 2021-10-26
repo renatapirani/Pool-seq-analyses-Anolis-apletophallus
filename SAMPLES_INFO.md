@@ -41,27 +41,23 @@ WORK FOLDER HYDRA: /scratch/genomics/piranir/poolparty
 * Help: http://broadinstitute.github.io/picard/command-line-overview.html -> CreateSequenceDictionary
 
 * 1 JOB: /scratch/genomics/piranir/poolparty/example/prep_bwa.job
- 
-  		+ **module**: ```module load bioinformatics/bwa/0.7.17```
- 		
-  		+ **module**: ```bwa index -a bwtsw shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta```
+
+	+ **module**: ```module load bioinformatics/bwa/0.7.17```
+	+ **module**: ```bwa index -a bwtsw shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta```
  
                                                                                                                        
 * 2 JOB: prep_samtools.job
 
-
-  		+ **module**: ```module load bioinformatics/samtools```                                                                                                                                       
-                                                                                             
-  		+ **module**: ```samtools faidx shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta```                                                                                                                                             
+	+ **module**: ```module load bioinformatics/samtools```
+  	+ **module**: ```samtools faidx shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta```                                                                                                                                             
 
 
 * 3 JOB: prep_java.job
-
-  		+ **module**: ```module load bioinformatics/picard-tools/2.20.6```  
-                                                                                                                                      
-  		+ **module**: ```java -jar picard.jar CreateSequenceDictionary \```                                                                                                                                             
-  		+ **module**: ```R=shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta \```                                                                                            
-  		+ **module**: ```O=shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta.dict```  
+	
+	+ **module**: ```module load bioinformatics/picard-tools/2.20.6```
+	+ **module**: ```java -jar picard.jar CreateSequenceDictionary \```
+	+ **module**: ```R=shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta \```
+	+ **module**: ```O=shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta.dict```  
 
 
 
