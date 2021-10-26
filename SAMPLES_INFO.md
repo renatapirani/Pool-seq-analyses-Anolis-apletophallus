@@ -222,15 +222,15 @@ After finishing running.
 
 * Command line to export the genome to R 
 
-		+ **module**: ```perl /home/piranir/Manhattan_plots/Running_chrom.pl --input_file=shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta.fai --output_file=anolis_poolseq_chrom_size.txt```
+	+ **command**: ```perl /home/piranir/Manhattan_plots/Running_chrom.pl --input_file=shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta.fai --output_file=anolis_poolseq_chrom_size.txt```
 
 * Command line to export the Fst file to R
 
-		+ **command**: ```perl /home/piranir/Manhattan_plots/Genome_R_script.pl --input_file=p1_p2_fst.igv --output_file=Anolis.fst.R_ready --chrom_size_file=anolis_poolseq_chrom_size.txt```
+	+ **command**: ```perl /home/piranir/Manhattan_plots/Genome_R_script.pl --input_file=p1_p2_fst.igv --output_file=Anolis.fst.R_ready --chrom_size_file=anolis_poolseq_chrom_size.txt```
 
 * Command line to export the Fisher file to R
 
-		+ **command**: ```perl /home/piranir/Manhattan_plots/Genome_R_script.pl --input_file=p1_p2-fet.igv --output_file=Anolis.fet.R_ready --chrom_size_file=anolis_poolseq_chrom_size.txt```
+	+ **command**: ```perl /home/piranir/Manhattan_plots/Genome_R_script.pl --input_file=p1_p2-fet.igv --output_file=Anolis.fet.R_ready --chrom_size_file=anolis_poolseq_chrom_size.txt```
 
 
 -> after we are going to work on R: script Poolseq-results.r
