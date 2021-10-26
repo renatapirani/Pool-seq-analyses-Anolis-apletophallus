@@ -85,10 +85,15 @@ WORK FOLDER HYDRA: /scratch/genomics/piranir/poolparty
 -> 1 JOB: pp_align.job
 
   		+ **module**: ```module load bioinformatics/bcftools/1.9```  
+		
   		+ **module**: ```module load bioinformatics/fastqc/0.11.8``` 
+		
   		+ **module**: ```module load bioinformatics/bwa/0.7.17``` 
+		
   		+ **module**: ```module load bioinformatics/samtools``` 
+		
   		+ **module**: ```module load ~/modulefiles/miniconda``` 
+		
   		+ **module**: ```source activate tidyverse``` 
                                                                                                                                       
   		+ **module**: ```./PPalign pp_align.config```  
@@ -139,9 +144,9 @@ After finishing running.
 
 * Folder: /scratch/genomics/piranir/BAM_files_Anolis/BAM
 	* Job file: java.job
-
+	
   		+ **module**: ```source /home/ariasc/.bashrc``` 
-        + **module**: ```conda activate poolp2``` 
+  		+ **module**: ```conda activate poolp2``` 
                                                                                                                                       
   		+ **command**: ```java -ea -Xmx80g -jar /home/piranir/popoolation2_1201/mpileup2sync.jar --input p1_p2.mpileup --output p1_p2_java.sync --fastq-type sanger --min-qual 10 --threads 30```  
   		
@@ -154,7 +159,7 @@ After finishing running.
 
 
   		+ **module**: ```source /home/ariasc/.bashrc``` 
-        + **module**: ```conda activate poolp2``` 
+  		+ **module**: ```conda activate poolp2```  
                                                                                                                                       
   		+ **command**: ```perl /home/piranir/popoolation2_1201/snp-frequency-diff.pl --input p1_p2_java.sync --output-prefix p1_p2 --min-count 6 --min-coverage 10 --max-coverage 200```  
 
