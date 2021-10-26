@@ -43,27 +43,27 @@ WORK FOLDER HYDRA: /scratch/genomics/piranir/poolparty
 * 1 JOB: /scratch/genomics/piranir/poolparty/example/prep_bwa.job
 
  
- 		+ **module**: ```module load bioinformatics/bwa/0.7.17```
+  		+ **module**: ```module load bioinformatics/bwa/0.7.17```
  		
- 		+ **command**: ```bwa index -a bwtsw shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta```
+  		+ **module**: ```bwa index -a bwtsw shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta```
  
                                                                                                                        
 
 * 2 JOB: prep_samtools.job
 
 
- 		+ **module**: ```module load bioinformatics/samtools```                                                                                                                                       
+  		+ **module**: ```module load bioinformatics/samtools```                                                                                                                                       
                                                                                              
- 		+ **command**: ```samtools faidx shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta```                                                                                                                                             
+  		+ **module**: ```samtools faidx shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta```                                                                                                                                             
 
 
 * 3 JOB: prep_java.job
 
- 		+ **module**: ```module load bioinformatics/picard-tools/2.20.6```  
+  		+ **module**: ```module load bioinformatics/picard-tools/2.20.6```  
                                                                                                                                       
-  		+ **command**: ```java -jar picard.jar CreateSequenceDictionary \```                                                                                                                                             
-  		+ **command**: ```R=shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta \```                                                                                            
- 		+ **command**: ```O=shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta.dict```  
+  		+ **module**: ```java -jar picard.jar CreateSequenceDictionary \```                                                                                                                                             
+  		+ **module**: ```R=shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta \```                                                                                            
+  		+ **module**: ```O=shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta.dict```  
 
 
 
@@ -84,14 +84,14 @@ WORK FOLDER HYDRA: /scratch/genomics/piranir/poolparty
 
 -> 1 JOB: pp_align.job
 
-		+ **module**: ```module load bioinformatics/bcftools/1.9```  
-		+ **module**: ```module load bioinformatics/fastqc/0.11.8``` 
-		+ **module**: ```module load bioinformatics/bwa/0.7.17``` 
-		+ **module**: ```module load bioinformatics/samtools``` 
-		+ **module**: ```module load ~/modulefiles/miniconda``` 
+  		+ **module**: ```module load bioinformatics/bcftools/1.9```  
+  		+ **module**: ```module load bioinformatics/fastqc/0.11.8``` 
+  		+ **module**: ```module load bioinformatics/bwa/0.7.17``` 
+  		+ **module**: ```module load bioinformatics/samtools``` 
+  		+ **module**: ```module load ~/modulefiles/miniconda``` 
   		+ **module**: ```source activate tidyverse``` 
                                                                                                                                       
-  		+ **command**: ```./PPalign pp_align.config```  
+  		+ **module**: ```./PPalign pp_align.config```  
 
 --------------
 
@@ -167,7 +167,7 @@ After finishing running.
 
                                                                                        
   		+ **module**: ```source /home/ariasc/.bashrc``` 
-        + **module**: ```conda activate poolp2``` 
+  		+ **module**: ```conda activate poolp2``` 
                                                                                                                                       
   		+ **command**: ```perl /home/piranir/popoolation2_1201/fst-sliding.pl --input p1_p2_java.sync --output p1_p2.fst --suppress-noninformative --min-count 6 --min-coverage 10 --max-coverage 200 --min-covered-fraction 1 --window-size 1 --step-size 1 --pool-size 500```  
 
@@ -185,7 +185,7 @@ After finishing running.
 	
 
   		+ **module**: ```source /home/ariasc/.bashrc``` 
-        + **module**: ```conda activate poolp2``` 
+  		+ **module**: ```conda activate poolp2``` 
                                                                                                                                       
   		+ **command**: ```perl /home/piranir/popoolation2_1201/export/pwc2igv.pl --input p1_p2.fst --output p1_p2_fst.igv```  
 
@@ -198,7 +198,7 @@ After finishing running.
 
 
   		+ **module**: ```source /home/ariasc/.bashrc``` 
-        + **module**: ```conda activate poolp2``` 
+  		+ **module**: ```conda activate poolp2``` 
                                                                                                                                       
   		+ **command**: ```perl /home/piranir/popoolation2_1201/fisher-test.pl --input p1_p2_java.sync --output p1_p2.fet --min-count 6 --min-coverage 10 --max-coverage 200 --suppress-noninformative```  
 
@@ -211,7 +211,7 @@ After finishing running.
 
 
   		+ **module**: ```source /home/ariasc/.bashrc``` 
-        + **module**: ```conda activate poolp2``` 
+  		+ **module**: ```conda activate poolp2``` 
                                                                                                                                       
   		+ **command**: ```perl /home/piranir/popoolation2_1201/export/pwc2igv.pl --input p1_p2.fet --output p1_p2_fet.igv```  
 
