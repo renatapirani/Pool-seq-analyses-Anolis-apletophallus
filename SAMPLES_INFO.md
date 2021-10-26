@@ -41,14 +41,12 @@ WORK FOLDER HYDRA: /scratch/genomics/piranir/poolparty
 * Help: http://broadinstitute.github.io/picard/command-line-overview.html -> CreateSequenceDictionary
 
 * 1 JOB: /scratch/genomics/piranir/poolparty/example/prep_bwa.job
-
  
   		+ **module**: ```module load bioinformatics/bwa/0.7.17```
  		
   		+ **module**: ```bwa index -a bwtsw shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta```
  
                                                                                                                        
-
 * 2 JOB: prep_samtools.job
 
 
