@@ -236,6 +236,32 @@ After finishing running.
 -> after we are going to work on R: script Poolseq-results.r
 
 
+## R files and explanation
+
+* Download: we are going to use these files to check the right position of the scaffolds for the Geneious program. 
+
+* p1_p2.fst = this file contain the right position of the scaffolds and the fst values for each position 
+
+* p1_p2.fet = this file contain the right position of the scaffolds and the fet values for each position
+
+* Anolis.fet.R_ready = input files for R but to create this file we need to put all the scaffolds at the same line, which changes the right possition 
+
+* Anolis.fet.R_ready = input files for R but to create this file we need to put all the scaffolds at the same line, which changes the right possition 
+
+
+## Geneious program:
+
+* shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta = it is the fasta file of the A. apletophallus genome with our scaffolds names
+
+* annotation_shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta = it is the fasta file of the A. apletophallus genome with Dovetails scaffolds names (correct names)
+
+* annotation_shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output_mapping = mapping file, it shows the our scaffolds names and the correct names now
+
+* anolis_annotation_gemoma.gff = that is the annotation file that Carlos made after running program Gemoma for 6 different lizards annotation in a way to improve our dovetail annotation.   
+
+* PO2026_Anole.annotation.gff = that is the Dovetail A. apletophallus annotation file.
+
+* AnoSag2.1.fa.gz = it is the Anolis sagrei genome file. I will not use it for now. 
 
 
 
