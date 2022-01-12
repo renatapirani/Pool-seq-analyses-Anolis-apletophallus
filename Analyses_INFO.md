@@ -244,9 +244,9 @@ After finishing running.
 
 * p1_p2.fet = this file contain the right position of the scaffolds and the fet values for each position
 
-* Anolis.fet.R_ready = input files for R but to create this file we need to put all the scaffolds at the same line, which changes the right possition 
+* Anolis.fet.R_ready = input files for R but to create this file we need to put all the scaffolds at the same line, which changes the right position 
 
-* Anolis.fet.R_ready = input files for R but to create this file we need to put all the scaffolds at the same line, which changes the right possition 
+* Anolis.fet.R_ready = input files for R but to create this file we need to put all the scaffolds at the same line, which changes the right position 
 
 
 ## Geneious program:
