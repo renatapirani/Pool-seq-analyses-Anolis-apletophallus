@@ -1,15 +1,15 @@
-# POPLSEQ _ANOLIS APLETOPHALLUS_ 
+# Pool-Seq preparation of _ANOLIS APLETOPHALLUS_ dewlap data (Solid and Bicolor morph)
 
-## 2 MAIN FOLDER: 
+## 2 Main Files: 
 
 
-* FOLDER: Sample_WOM_B01_2-1259687 (49 ind, bicolor dewlap)
+* FOLDER: Bicolor_morph (50 ind, bicolor dewlap)
 
 files names: WOM_B01_2-1259687_S1_L001_R1_001.fastq.gz, WOM_B01_2-1259687_S1_L001_R2_001.fastq.gz
 
  
 
-* FOLDER: Sample_WOM_S02_2-1259687 (49 ind, solid dewlap)
+* FOLDER: Solid_morph (50 ind, solid dewlap)
 	
 files names: WOM_S02_2-1259687_S2_L001_R1_001.fastq.gz, WOM_S02_2-1259687_S2_L001_R2_001.fastq.gz
 		
@@ -34,30 +34,30 @@ WORK FOLDER HYDRA: /scratch/genomics/piranir/poolparty
 											 
 	** I changed the names of the files (removed the WOM_ from the beginning of the names) **
 											 
-* comparing this 2 populations -> the solid dewlap pop and the bicolor dewlap pop.   	
-* use a reference genome --> shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta <-- the Dovetail genome	
-* some times you need to prepare the genome before using it. 
+* comparing the 2 morph -> the solid and bicolor dewlap.   	
+* use a reference genome --> AnoAple_1.1.fasta (Pirani et al. 2023)
+* obs: sometimes you need to prepare the genome before using it. 
 * For this use the script (prep_genome.sh)
 * Help: http://broadinstitute.github.io/picard/command-line-overview.html -> CreateSequenceDictionary
 
 * 1 JOB: /scratch/genomics/piranir/poolparty/example/prep_bwa.job
 
 	+ **module**: ```module load bioinformatics/bwa/0.7.17```
-	+ **module**: ```bwa index -a bwtsw shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta```
+	+ **module**: ```bwa index -a bwtsw AnoAple_1.1.fasta```
  
                                                                                                                        
 * 2 JOB: prep_samtools.job
 
 	+ **module**: ```module load bioinformatics/samtools```
-  	+ **module**: ```samtools faidx shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta```                                                                                                                                             
+  	+ **module**: ```samtools faidx AnoAple_1.1.fasta```                                                                                                                                             
 
 
 * 3 JOB: prep_java.job
 	
 	+ **module**: ```module load bioinformatics/picard-tools/2.20.6```
 	+ **module**: ```java -jar picard.jar CreateSequenceDictionary \```
-	+ **module**: ```R=shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta \```
-	+ **module**: ```O=shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta.dict```  
+	+ **module**: ```R=AnoAple_1.1.fasta \```
+	+ **module**: ```O=AnoAple_1.1.fasta.dict```  
 
 
 
@@ -69,8 +69,8 @@ WORK FOLDER HYDRA: /scratch/genomics/piranir/poolparty
 	
 * create the folder -> dewlapSB
 * copy the folder popoolation2_1201 from /home/ariasc/programs/popoolation to your folder (do for the first time)
-* download samblaster from "git clone git://github.com/GregoryFaust/samblaster.git" (do for the first time)
-* HELP: install conda -  https://confluence.si.edu/display/HPC/Conda+tutorial (install R packages and everything else) (do for the first time)
+* download samblaster from "git clone git://github.com/GregoryFaust/samblaster.git" (do this for the first time)
+* HELP: install conda -  https://confluence.si.edu/display/HPC/Conda+tutorial (install R packages and everything else) (do this for the first time)
 
 	 
 * File samplelist.txt = the file with the fastq files divided by population (solid or bicolor).  
@@ -107,10 +107,6 @@ After finishing running.
 
 * To call for indels
 - grep "indel" pp_align.log
-
-
-#### AFTER MANY ERRORS, PROBABLY BECAUSE OF SAMBLASTER, WE DECIDED TO RUN WITH CARLOS PROGRAMS, 
-	I WILL ACCESS HIS FOLDER AND RUN POOLPARTY AS THE EXAMPLE BELOW:
 
 
 * RUNNIG FILES:
@@ -222,7 +218,7 @@ After finishing running.
 
 * Command line to export the genome to R 
 
-	+ **command**: ```perl /home/piranir/Manhattan_plots/Running_chrom.pl --input_file=shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta.fai --output_file=anolis_poolseq_chrom_size.txt```
+	+ **command**: ```perl /home/piranir/Manhattan_plots/Running_chrom.pl --input_file=AnoAple_1.1.fasta.fai --output_file=anolis_poolseq_chrom_size.txt```
 
 * Command line to export the Fst file to R
 
@@ -248,20 +244,6 @@ After finishing running.
 
 * Anolis.fet.R_ready = input files for R but to create this file we need to put all the scaffolds at the same line, which changes the right position 
 
-
-## Geneious program:
-
-* shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta = it is the fasta file of the A. apletophallus genome with our scaffolds names
-
-* annotation_shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output.fasta = it is the fasta file of the A. apletophallus genome with Dovetails scaffolds names (correct names)
-
-* annotation_shaune-smi2505-mb-hirise-gd6od__06-26-2021__hic_output_mapping = mapping file, it shows the our scaffolds names and the correct names now
-
-* anolis_annotation_gemoma.gff = that is the annotation file that Carlos made after running program Gemoma for 6 different lizards annotation in a way to improve our dovetail annotation.   
-
-* PO2026_Anole.annotation.gff = that is the Dovetail A. apletophallus annotation file.
-
-* AnoSag2.1.fa.gz = it is the Anolis sagrei genome file. I will not use it for now. 
 
 
 
