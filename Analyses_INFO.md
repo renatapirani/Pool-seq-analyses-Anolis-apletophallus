@@ -1,4 +1,4 @@
-# Pool-Seq preparation of _ANOLIS APLETOPHALLUS_ dewlap data (Solid and Bicolor morph)
+# Pool-Seq preparation of _Anolis apletophallus_ dewlap data (Solid and Bicolor morph)
 
 ## 2 Main Files: 
 
