@@ -2,12 +2,10 @@
 
 ## 2 Main Files: 
 
-
 * FOLDER: Bicolor_morph (50 ind, bicolor dewlap)
 
 files names: WOM_B01_2-1259687_S1_L001_R1_001.fastq.gz, WOM_B01_2-1259687_S1_L001_R2_001.fastq.gz
 
- 
 
 * FOLDER: Solid_morph (50 ind, solid dewlap)
 	
@@ -25,6 +23,8 @@ mapping in nonmodel organisms. Molecular Ecology Resources 10.1111/1755-0998.127
 The pipeline was performed with 30 threads on the Smithsonian Institution High Performance Computing Cluster 
 (citation: Smithsonian Institution High Performance Computing Cluster. Smithsonian Institution)
 
+All the paremeters used here are described in the manuscript. 
+
 
 # Step 1 - Genome preparation
 
@@ -39,7 +39,7 @@ WORK FOLDER HYDRA: /scratch/genomics/piranir/poolparty
 * comparing the 2 morph -> the solid and bicolor dewlap   	
 * use a reference genome --> AnoAple_1.1.fasta (Pirani et al. 2023)
 * Preparing the genome before using it
-* For this use the script (prep_genome.sh)
+* For this use the script -> prep_genome.sh
 * Help: http://broadinstitute.github.io/picard/command-line-overview.html -> CreateSequenceDictionary
 
 * 1 JOB: /scratch/genomics/piranir/poolparty/example/prep_bwa.job
@@ -111,15 +111,15 @@ After finishing running.
 * To call for indels
 - grep "indel" pp_align.log
 
-* The results are presented at the Table 2
+* check the .log file in the end of the run
+* The results are presented at the Table 2 of the manuscript
 
 
 
 # Step 3: Stats
 
-#### After use Popoolation2
-
 * Folder: /scratch/genomics/piranir/dewlapSB
+* Configure the config file and change the parameters
 	* Job file: java.job
                                                                                                                                       
   		+ **command**: ```./PPstats pp_stats.config ```  
@@ -136,9 +136,12 @@ There are 2 populations in the mpileup
 2253390802 bp covered sufficiently by all libraries                                                                                   
 0.92998  of genome covered sufficiently by all libraries
 
+Results Figure: PP_stats_prop_cov.pdf
+
 
 # Step 4: Analyze
 
+* Open the pp_analyze.config file and make some changes:
 
 PREFIX=dewlapSB_analyze                                                                                                               
 COVFILE=/scratch/genomics/piranir/NEWpoolparty/example/dewlapSB/filters/dewlapSB_coverage.txt                                         
@@ -160,13 +163,21 @@ OUTDIR=/scratch/genomics/piranir/NEWpoolparty/example/PPanalyzes
                                                                                                                                      
   		+ **command**: ```./PPanalyze pp_analyze.config```  
                                                                  
+#### Some of the results
+
+> awk '$4 > .60' dewlapSB_analyze.fst | wc -l  ### check the fst values
+Result: 23771 SNPs had very high Fst (>0.60)
+
+> awk '$4 < .05' dewlapSB_analyze.fet | wc -l  ### check the fet values
+Result:  7166521 SNPs had very high Fet (>0.05)
+
+* We used Manhatan plot R scripts to plot the final results
 
 
 ## STEP 5: preparing the files for R
 
 
-
-* For this step I am using the github Manhattan_plots (https://github.com/Gammerdinger/Manhattan_plots)																
+* For this step we used the github Manhattan_plots (https://github.com/Gammerdinger/Manhattan_plots)																
 
 * Command line to export the genome to R 
 
@@ -197,6 +208,7 @@ OUTDIR=/scratch/genomics/piranir/NEWpoolparty/example/PPanalyzes
 * Anolis.fet.R_ready = input files for R but to create this file we need to put all the scaffolds at the same line, which changes the right position 
 
 
+Done.
 
 
 
