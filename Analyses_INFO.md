@@ -22,6 +22,8 @@ GitHub = https://github.com/StevenMicheletti/poolparty
 Citation: "Micheletti SJ and SR Narum. 2018. Utility of pooled sequencing for association 
 mapping in nonmodel organisms. Molecular Ecology Resources 10.1111/1755-0998.12784"
 
+The pipeline was performed with 30 threads on the Smithsonian Institution High Performance Computing Cluster 
+(citation: Smithsonian Institution High Performance Computing Cluster. Smithsonian Institution)
 
 
 # Step 1 - Genome preparation
@@ -29,14 +31,14 @@ mapping in nonmodel organisms. Molecular Ecology Resources 10.1111/1755-0998.127
 WORK FOLDER HYDRA: /scratch/genomics/piranir/poolparty
 											
 
-* make a folder with all the fastq.gz files: S02_2-1259687_S2_L001_R1_001.fastq.gz, S02_2-1259687_S2_L001_R2_001.fastq.gz (SOLID DEWLAP - POP2)
-											 B01_2-1259687_S1_L001_R1_001.fastq.gz, B01_2-1259687_S1_L001_R2_001.fastq.gz (BICOLOR DEWLAP - POP1)
+* make a folder with all the fastq.gz files: S02_2-1259687_S2_L001_R1_001.fastq.gz, S02_2-1259687_S2_L001_R2_001.fastq.gz (SOLID DEWLAP)
+											 B01_2-1259687_S1_L001_R1_001.fastq.gz, B01_2-1259687_S1_L001_R2_001.fastq.gz (BICOLOR DEWLAP)
 											 
 	** I changed the names of the files (removed the WOM_ from the beginning of the names) **
 											 
-* comparing the 2 morph -> the solid and bicolor dewlap.   	
+* comparing the 2 morph -> the solid and bicolor dewlap   	
 * use a reference genome --> AnoAple_1.1.fasta (Pirani et al. 2023)
-* obs: sometimes you need to prepare the genome before using it. 
+* Preparing the genome before using it
 * For this use the script (prep_genome.sh)
 * Help: http://broadinstitute.github.io/picard/command-line-overview.html -> CreateSequenceDictionary
 
@@ -61,19 +63,19 @@ WORK FOLDER HYDRA: /scratch/genomics/piranir/poolparty
 
 
 
-# Step 2 : Alignment 
+# Step 2: Alignment 
 												
 	
 * open the "pp_align.config" file and make the changes for this data 
 	-> I am configuring it based on the results from the sequence company
 	
 * create the folder -> dewlapSB
-* copy the folder popoolation2_1201 from /home/ariasc/programs/popoolation to your folder (do for the first time)
+* copy the folder popoolation2_1201 from /home/ariasc/programs/popoolation to your folder (do this for the first time)
 * download samblaster from "git clone git://github.com/GregoryFaust/samblaster.git" (do this for the first time)
 * HELP: install conda -  https://confluence.si.edu/display/HPC/Conda+tutorial (install R packages and everything else) (do this for the first time)
 
 	 
-* File samplelist.txt = the file with the fastq files divided by population (solid or bicolor).  
+* File samplelist.txt = the file with the fastq files divided by morph (solid or bicolor).  
 
 	* 1 JOB: pp_align.job
 
@@ -82,8 +84,9 @@ WORK FOLDER HYDRA: /scratch/genomics/piranir/poolparty
   		+ **module**: ```module load bioinformatics/bwa/0.7.17```
   		+ **module**: ```module load bioinformatics/samtools```
   		+ **module**: ```module load ~/modulefiles/miniconda```
-  		+ **module**: ```source activate tidyverse```
-  		+ **module**: ```./PPalign pp_align.config```  
+  		+ **module**: ```source activate tidyverse``` 
+
+		+ **command**: ```./PPalign pp_align.config```  
 
 --------------
 
@@ -108,109 +111,58 @@ After finishing running.
 * To call for indels
 - grep "indel" pp_align.log
 
+* The results are presented at the Table 2
 
-* RUNNIG FILES:
-- Now we are going to run the jobs in a different way 
-- check the sites: https://sourceforge.net/p/popoolation2/wiki/Tutorial/
-					http://www.htslib.org/doc/samtools-mpileup.html
 
-* Folder: /scratch/genomics/piranir/BAM_files_Anolis/BAM
-	* Files: pop_1.bam, pop_2.bam 
-	* Job file: samtools.job
 
-  		+ **module**: ```module load bioinformatics/samtools``` 
-                                                                                                                                      
-  		+ **command**: ```samtools mpileup -B pop_1.bam pop_2.bam > p1_p2.mpileup```  
-
+# Step 3: Stats
 
 #### After use Popoolation2
 
-* Folder: /scratch/genomics/piranir/BAM_files_Anolis/BAM
+* Folder: /scratch/genomics/piranir/dewlapSB
 	* Job file: java.job
-	
-  		+ **module**: ```source /home/ariasc/.bashrc``` 
-  		+ **module**: ```conda activate poolp2``` 
                                                                                                                                       
-  		+ **command**: ```java -ea -Xmx80g -jar /home/piranir/popoolation2_1201/mpileup2sync.jar --input p1_p2.mpileup --output p1_p2_java.sync --fastq-type sanger --min-qual 10 --threads 30```  
-  		
-
-
-#### Calculate allele frequency differences
-
-* Folder: /scratch/genomics/piranir/BAM_files_Anolis/BAM
-	* Job file: allele.job
-
-
-  		+ **module**: ```source /home/ariasc/.bashrc``` 
-  		+ **module**: ```conda activate poolp2```  
-                                                                                                                                      
-  		+ **command**: ```perl /home/piranir/popoolation2_1201/snp-frequency-diff.pl --input p1_p2_java.sync --output-prefix p1_p2 --min-count 6 --min-coverage 10 --max-coverage 200```  
-
-
-
-#### Calculate Fst for every SNP
-
-* Folder: /scratch/genomics/piranir/BAM_files_Anolis/BAM
-	
-	* Job file: fst.job
-
-                          
-  		+ **module**: ```source /home/ariasc/.bashrc```
-  		+ **module**: ```conda activate poolp2```
-                                                                                                      
-  		+ **command**: ```perl /home/piranir/popoolation2_1201/fst-sliding.pl --input p1_p2_java.sync --output p1_p2.fst --suppress-noninformative --min-count 6 --min-coverage 10 --max-coverage 200 --min-covered-fraction 1 --window-size 1 --step-size 1 --pool-size 500```  
-
+  		+ **command**: ```./PPstats pp_stats.config ```  
+  		 
 
 #### Results:
-(base) -bash-4.2$ wc p1_p2.fst                                                                                                        
-  46023783  276142698 2778394964 p1_p2.fst
+(base) -bash-4.2$ cat PP_stats_summary.txt                                                                                           
+Full genome length is 2423059081 bp                                                                                                   
+Anchored genome length is 0 bp                                                                                                       
+Scaffold length is 2423059081 bp                                                                                                     
+Proportion of assembly that is anchored is 0.00000                                                                                   
+There are 0 chromosomes                                                                                                               
+There are 2 populations in the mpileup                                                                                               
+2253390802 bp covered sufficiently by all libraries                                                                                   
+0.92998  of genome covered sufficiently by all libraries
 
 
-                                                                                                                              
-#### Here we will convert Fst file into .igv format for future analysis on R
+# Step 4: Analyze
 
-* Folder: /scratch/genomics/piranir/BAM_files_Anolis/BAM
-	* Job file: fst-igv.job
-	
 
-  		+ **module**: ```source /home/ariasc/.bashrc``` 
-  		+ **module**: ```conda activate poolp2``` 
-                                                                                                                                      
-  		+ **command**: ```perl /home/piranir/popoolation2_1201/export/pwc2igv.pl --input p1_p2.fst --output p1_p2_fst.igv```  
-
+PREFIX=dewlapSB_analyze                                                                                                               
+COVFILE=/scratch/genomics/piranir/NEWpoolparty/example/dewlapSB/filters/dewlapSB_coverage.txt                                         
+SYNC=/scratch/genomics/piranir/NEWpoolparty/example/dewlapSB/dewlapSB.sync                                                           
+FZFILE=/scratch/genomics/piranir/NEWpoolparty/example/dewlapSB/dewlapSB.fz                                                           
+BLACKLIST=/scratch/genomics/piranir/NEWpoolparty/example/dewlapSB/filters/dewlapSB_poly_all.txt
+OUTDIR=/scratch/genomics/piranir/NEWpoolparty/example/PPanalyzes
 
                                                                                                                                 
-#### Fisher's Exact Test: estimate the significance of allele frequency differences
+* Folder: /scratch/genomics/piranir/NEWpoolparty/example/dewlapSB
+	* Job file: pp_analyze.job
 
-* Folder: /scratch/genomics/piranir/BAM_files_Anolis/BAM
-	* Job file: fisher_test.job
-
-
-  		+ **module**: ```source /home/ariasc/.bashrc``` 
-  		+ **module**: ```conda activate poolp2``` 
-                                                                                                                                      
-  		+ **command**: ```perl /home/piranir/popoolation2_1201/fisher-test.pl --input p1_p2_java.sync --output p1_p2.fet --min-count 6 --min-coverage 10 --max-coverage 200 --suppress-noninformative```  
-
-
-
-#### Here we will convert fet file into .igv format for future analysis on R
-
-* Folder: /scratch/genomics/piranir/BAM_files_Anolis/BAM
-	* Job file: fet-igv.job
+		+ **module**: ```load bioinformatics/bcftools/1.9```
+		+ **module**: ```load bioinformatics/fastqc/0.11.8```
+		+ **module**: ```load bioinformatics/bwa/0.7.17```
+		+ **module**: ```load bioinformatics/samtools```
+  		+ **module**: ```load ~/modulefiles/miniconda``` 
+  		+ **module**: ```source activate tidyverse``` 
+                                                                                                                                     
+  		+ **command**: ```./PPanalyze pp_analyze.config```  
+                                                                 
 
 
-  		+ **module**: ```source /home/ariasc/.bashrc``` 
-  		+ **module**: ```conda activate poolp2``` 
-                                                                                                                                      
-  		+ **command**: ```perl /home/piranir/popoolation2_1201/export/pwc2igv.pl --input p1_p2.fet --output p1_p2_fet.igv```  
-
-
-
-* Explanation why we use IGV files: IGV (Integrative Genomics Viewer: https://www.broadinstitute.org/igv/)  
-                                                                      
-
-
-## STEP 2: preparing the files for R
+## STEP 5: preparing the files for R
 
 
 
