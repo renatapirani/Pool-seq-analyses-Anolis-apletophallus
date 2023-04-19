@@ -115,6 +115,40 @@ After finishing running.
 * The results are presented at the Table 2 of the manuscript
 
 
+## Results pop_1.bam
+(base) -bash-4.2$ samtools flagstat pop_1.bam -@ 5                                                                
+533607347 + 0 in total (QC-passed reads + QC-failed reads)                                                          
+2683784 + 0 secondary                                                                                               
+0 + 0 supplementary                                                                                                 
+0 + 0 duplicates                                                                                                    
+533607347 + 0 mapped (100.00% : N/A)                                                                                
+530923563 + 0 paired in sequencing                                                                                  
+265519237 + 0 read1                                                                                                 
+265404326 + 0 read2                                                                                                 
+530923563 + 0 properly paired (100.00% : N/A)                                                                       
+530923563 + 0 with itself and mate mapped                                                                           
+0 + 0 singletons (0.00% : N/A)                                                                                      
+0 + 0 with mate mapped to a different chr                                                                           
+0 + 0 with mate mapped to a different chr (mapQ>=5)
+
+
+## Results pop_2.bam
+(base) -bash-4.2$ samtools flagstat pop_2.bam -@ 5                                                                
+687661349 + 0 in total (QC-passed reads + QC-failed reads)                                                          
+3493537 + 0 secondary                                                                                               
+0 + 0 supplementary                                                                                                 
+0 + 0 duplicates                                                                                                    
+687661349 + 0 mapped (100.00% : N/A)                                                                                
+684167812 + 0 paired in sequencing                                                                                  
+342151768 + 0 read1                                                                                                 
+342016044 + 0 read2                                                                                                 
+684167812 + 0 properly paired (100.00% : N/A)                                                                       
+684167812 + 0 with itself and mate mapped                                                                           
+0 + 0 singletons (0.00% : N/A)                                                                                      
+0 + 0 with mate mapped to a different chr                                                                           
+0 + 0 with mate mapped to a different chr (mapQ>=5)
+
+
 
 # Step 3: Stats
 
