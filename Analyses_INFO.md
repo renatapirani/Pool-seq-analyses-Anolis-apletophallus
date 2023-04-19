@@ -114,6 +114,51 @@ After finishing running.
 * check the .log file in the end of the run
 * The results are presented at the Table 2 of the manuscript
 
+## Total Results
+>> grep "ALERT" pp_aling.log
+ALERT: See dewlapSB_files_for_pops.txt for population merge order
+ALERT: 60429504 SNPs total SNPS called without filters
+ALERT: 7145492 SNPs removed due to QUAL < 15 and total DP < 10 
+ALERT: Additional 2653066 SNPs removed due to global MAF < 0.05 
+ALERT: 50630946 total SNPs retained after SNP calling
+ALERT: Of the remaining SNPs, there are 44531648 SNPs and 6099298 INDels
+ALERT: Variant calling and filtering done at Sun Mar 27 01:37:57 EDT 2022 
+ALERT: mpileups are being created at  Sun Mar 27 01:37:57 EDT 2022
+ALERT: Mpileups created at Sun Mar 27 04:01:44 EDT 2022
+ALERT: Identifying indel regions and creating sync format at Sun Mar 27 04:01:44 EDT 2022
+ALERT: Done identifying indel regions and creating sync format at Sun Mar 27 04:19:37 EDT 2022
+ALERT: With an indel window of 15 bp you lost 11818072 SNPs or 24 % 
+ "R ALERT: Determining .sync stats for pop_1"
+[1] "R ALERT: Performing corrections on .sync file"
+[1] "R ALERT: 9940 SNPs in pop_1 had 3 or more alleles. These will be blacklisted."
+[1] "R ALERT: R is writing files to disk"
+[1] "R ALERT: Determining .sync stats for pop_2"
+[1] "R ALERT: Performing corrections on .sync file"
+[1] "R ALERT: 13961 SNPs in pop_2 had 3 or more alleles. These will be blacklisted."
+[1] "R ALERT: R is writing files to disk"
+ALERT: Rscript standardization done at Sun Mar 27 06:35:04 EDT 2022 
+ALERT: Normalized sync file order is: 
+ALERT: With an indel window of 15 bp you lost 11818072 SNPs or 24 %
+ALERT: Alignment and data creation step finished at Sun Mar 27 06:41:53 EDT 2022 
+ALERT: Creating allele frequency tables in R
+ALERT: Rscript called to calculate allele frequencies at Sun Mar 27 06:41:53 EDT 2022 
+[1] "R ALERT: Formatting file and calculating summary stats"
+[1] "R ALERT: Calculating depth of coverage at each position"
+[1] "R ALERT: Noting potential paralogs (>3 alleles per position)"
+[1] "R ALERT: Calculating Allele Frequencies"
+[1] "R ALERT: Determining Positions that fail MAF"
+[1] "R ALERT: 25983 SNPS (0.07%) do not pass additional population MAF threshold of 0.05 and have been noted"
+[1] "R ALERT: Writing output files"
+ALERT: Frequency file dewlapSB_full.fz and its counterparts created at Sun Mar 27 06:56:32 EDT 2022 
+[1] "R ALERT: Formatting file and calculating summary stats"
+[1] "R ALERT: Noting potential paralogs (>3 alleles per position)"
+[1] "R ALERT: Calculating Allele Frequencies"
+[1] "R ALERT: Determining Positions that fail MAF"
+[1] "R ALERT: 908246 SNPS (2.37%) do not pass additional population MAF threshold of 0.05 and have been noted"
+[1] "R ALERT: Writing output files"
+ALERT: Frequency file dewlapSB_norm_full.fz and its counterparts created at Sun Mar 27 07:08:13 EDT 2022 
+ALERT: PPalign completed at Sun Mar 27 07:08:13 EDT 2022 
+
 
 ## Results pop_1.bam
 (base) -bash-4.2$ samtools flagstat pop_1.bam -@ 5                                                                
