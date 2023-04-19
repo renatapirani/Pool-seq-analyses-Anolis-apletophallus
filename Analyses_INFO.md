@@ -115,7 +115,7 @@ After finishing running.
 * The results are presented at the Table 2 of the manuscript
 
 ## Total Results
->> grep "ALERT" pp_aling.log
+grep "ALERT" pp_aling.log
 ALERT: See dewlapSB_files_for_pops.txt for population merge order
 ALERT: 60429504 SNPs total SNPS called without filters
 ALERT: 7145492 SNPs removed due to QUAL < 15 and total DP < 10 
