@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors: "Pirani RM, Arias C, Curlis JD, Nicholson DJ, Stapley J, Mcmillan WO, Cox CL, Logan ML"
+title: "The genetic basis of a colorful signal: The polymorphic dewlap of the slender anole (Anolis apletophallus)"
+Journal: Heredity
+doi: https://doi.org/10.1038/s41437-025-00763-z 
+date-released: 2025-01-18
+url: "https://github.com/renatapirani/Pool-seq-analyses-Anolis-apletophallus/"
